@@ -25,7 +25,7 @@ jobs:
         run: az acr login --name ${{ secrets.ACR_NAME }}
 
       - name: Tag image
-        run: docker tag githubactions-aks-demo:'${{github.sha}}' ${{ secrets.ACR_NAME }}/githubactions-aks-demo:'${{github.sha}}'
+        run: docker tag githubactions-aks-demo:'${{github.sha}}' msbuilddemo/githubactions-aks-demo:'${{github.sha}}'
 
       - name: Push image
         run: docker push ${{ secrets.ACR_NAME }}/githubactions-aks-demo:'${{github.sha}}'
