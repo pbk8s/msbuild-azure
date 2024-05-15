@@ -8,6 +8,7 @@ jobs:
   deploy:
     name: Deploy application
     runs-on: self-hosted
+    
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
@@ -15,7 +16,7 @@ jobs:
       - name: Build image
         env:
           ACR_NAME: ${{ secrets.ACR_NAME }}
-        run: make build
+        run: docker build -t githubactions-aks-demo:latest .
       - name: Login to container registry
         env:
           SERVICE_PRINCIPAL_APP_ID: ${{ secrets.SERVICE_PRINCIPAL_APP_ID }}
