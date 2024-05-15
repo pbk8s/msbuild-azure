@@ -24,11 +24,10 @@ jobs:
       - name: ACR login
         run: az acr login --name msbuilddemo
 
-      - name: Tag image
-        run: docker tag githubactions-aks-demo:'${{github.sha}}' msbuilddemo/githubactions-aks-demo:'${{github.sha}}'
-
-      - name: Push image
-        run: docker push msbuilddemo/githubactions-aks-demo:'${{github.sha}}'
+      - name: Tag and push image
+        run: |
+          docker tag githubactions-aks-demo:'${{github.sha}}' msbuilddemo/githubactions-aks-demo:'${{github.sha}}'
+          docker push msbuilddemo/githubactions-aks-demo:'${{github.sha}}'
 
       - name: Get AKS credentials
         env:
