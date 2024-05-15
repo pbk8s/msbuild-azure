@@ -1,3 +1,5 @@
+name: Deploy .NET app
+
 on:
   workflow_dispatch:
   
