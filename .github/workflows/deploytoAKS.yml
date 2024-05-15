@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build image
-        run: docker build -t ${{ secrets.ACR_NAME }}.azurecr.io/githubactions-aks-demo:'${{github.sha}}' .
+        run: docker build -t githubactions-aks-demo:'${{github.sha}}' .
       
       - name: Azure login
         uses: azure/login@v1.4.6
@@ -22,13 +22,13 @@ jobs:
           creds: '${{ secrets.AZURE_CREDENTIALS }}'
 
       - name: ACR login
-        run: az acr login --name ${{ secrets.ACR_NAME }}
+        run: az acr login --name msbuilddemo
 
       - name: Tag image
         run: docker tag githubactions-aks-demo:'${{github.sha}}' msbuilddemo/githubactions-aks-demo:'${{github.sha}}'
 
       - name: Push image
-        run: docker push ${{ secrets.ACR_NAME }}/githubactions-aks-demo:'${{github.sha}}'
+        run: docker push msbuilddemo/githubactions-aks-demo:'${{github.sha}}'
 
       - name: Get AKS credentials
         env:
