@@ -22,7 +22,7 @@ jobs:
           creds: '${{ secrets.AZURE_CREDENTIALS }}'
 
       - name: ACR login
-        run: az acr login --name $(ACR_NAME)
+        run: az acr login --name ${{ secrets.ACR_NAME }}.azurecr.io
 
       - name: Push image
         env:
