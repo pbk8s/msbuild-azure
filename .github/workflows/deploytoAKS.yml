@@ -22,7 +22,7 @@ jobs:
         uses: azure/login@v1.4.6
         with:
           creds: '${{ secrets.AZURE_CREDENTIALS }}'
-	
+
       - name: ACR login
         run: az acr login --name $(ACR_NAME)
 	
