@@ -16,17 +16,21 @@ jobs:
       - name: Build image
         env:
           ACR_NAME: ${{ secrets.ACR_NAME }}
-        run: docker build -t githubactions-aks-demo:latest .
+        run: docker build -t githubactions-aks-demo:'${{github.sha}}' .
       
       - name: Azure login
         uses: azure/login@v1.4.6
         with:
           creds: '${{ secrets.AZURE_CREDENTIALS }}'
-	@az acr login --name $(ACR_NAME)
+	
+      - name: ACR login
+        run: az acr login --name $(ACR_NAME)
+	
       - name: Push image
         env:
           ACR_NAME: ${{ secrets.ACR_NAME }}
-        run: make push
+        run: docker push githubactions-aks-demo:'${{github.sha}}'
+	
       - name: Get AKS credentials
         env:
           CLUSTER_RESOURCE_GROUP_NAME: ${{ secrets.CLUSTER_RESOURCE_GROUP_NAME }}
