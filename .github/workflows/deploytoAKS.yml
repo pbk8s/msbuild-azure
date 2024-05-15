@@ -22,12 +22,13 @@ jobs:
           creds: '${{ secrets.AZURE_CREDENTIALS }}'
 
       - name: ACR login
-        run: az acr login --name ${{ secrets.ACR_NAME }}.azurecr.io
+        run: az acr login --name ${{ secrets.ACR_NAME }}
+
+      - name: Tag image
+        run: docker tag githubactions-aks-demo:'${{github.sha}}' ${{ secrets.ACR_NAME }}/githubactions-aks-demo:'${{github.sha}}'
 
       - name: Push image
-        env:
-          ACR_NAME: ${{ secrets.ACR_NAME }}
-        run: docker push githubactions-aks-demo:'${{github.sha}}'
+        run: docker push ${{ secrets.ACR_NAME }}/githubactions-aks-demo:'${{github.sha}}'
 
       - name: Get AKS credentials
         env:
