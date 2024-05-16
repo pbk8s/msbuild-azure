@@ -26,8 +26,8 @@ jobs:
 
       - name: Tag and push image
         run: |
-          docker tag githubactions-aks-demo:'${{github.sha}}' msbuilddemo/githubactions-aks-demo:'${{github.sha}}'
-          docker push msbuilddemo/githubactions-aks-demo:'${{github.sha}}'
+          docker tag githubactions-aks-demo:'${{github.sha}}' msbuilddemo.azurecr.io/githubactions-aks-demo:'${{github.sha}}'
+          docker push msbuilddemo.azurecr.io/githubactions-aks-demo:'${{github.sha}}'
 
       - name: Get AKS credentials
         env:
