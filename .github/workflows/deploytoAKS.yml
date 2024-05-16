@@ -40,7 +40,7 @@ jobs:
             --overwrite-existing
       
       - name: Deploy application
-      - uses: Azure/k8s-deploy@v1
+        uses: Azure/k8s-deploy@v1
         with:
           manifests: |
            k8s/deployment.yaml
