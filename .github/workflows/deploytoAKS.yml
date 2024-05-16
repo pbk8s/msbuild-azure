@@ -38,7 +38,13 @@ jobs:
             --resource-group $CLUSTER_RESOURCE_GROUP_NAME \
             --name $CLUSTER_NAME \
             --overwrite-existing
+      
       - name: Deploy application
-        env:
-          ACR_NAME: ${{ secrets.ACR_NAME }}
-        run: make deploy
+      - uses: Azure/k8s-deploy@v1
+        with:
+          manifests: |
+           k8s/deployment.yaml
+           k8s/service.yaml
+          images: |
+            msbuilddemo.azurecr.io/githubactions-aks-demo:${{ github.sha }}
+  
