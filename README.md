@@ -1,1 +1,1 @@
-Demo repository for deploying .NET based application in AKS using Arm-based GitHub Actions runner
+Demo repository for deploying .NET based application in AKS using GitHub Actions.
