@@ -2,6 +2,7 @@ name: Deploy .NET app
 
 on:
   workflow_dispatch:
+  push:
   
 
 jobs:
