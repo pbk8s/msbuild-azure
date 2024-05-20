@@ -47,5 +47,5 @@ jobs:
            k8s/deployment.yml
            k8s/service.yml
           images: |
-            msbuilddemo.azurecr.io/githubactions-aks-demo:${{ github.sha }}
+            msbuilddemo.azurecr.io/githubactions-aks-demo:${{github.sha }}
   
